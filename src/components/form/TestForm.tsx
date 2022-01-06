@@ -25,7 +25,7 @@ const TestForm: VFC = () => {
 			<input type="text" placeholder="ex-2" {...register("exReq", { required: true })} />
 			{errors.exReq && <span css={{ color: "red" }}>please type something</span>}
 			<div className="btn-wrap">
-				<button type="submit">send</button>
+				<button type="submit">click me</button>
 			</div>
 		</form>
 	);
