@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { motion } from "framer-motion";
 import { VFC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
@@ -24,9 +25,9 @@ const TestForm: VFC = () => {
 			<input type="text" placeholder="ex-1" {...register("ex")} />
 			<input type="text" placeholder="ex-2" {...register("exReq", { required: true })} />
 			{errors.exReq && <span css={{ color: "red" }}>please type something</span>}
-			<div className="btn-wrap">
+			<motion.div className="btn-wrap" whileHover={{ scale: 1.1 }}>
 				<button type="submit">click me</button>
-			</div>
+			</motion.div>
 		</form>
 	);
 };
