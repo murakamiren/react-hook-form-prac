@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import { VFC } from "react";
+import { motion } from "framer-motion";
 import { useRecoilValue } from "recoil";
 import { formInputs } from "../../types/formType";
 import { formDataAtom } from "../store/atoms/formDataAtom";
@@ -11,14 +12,19 @@ const InputMap: VFC = () => {
 			<h2>your data</h2>
 			<ul css={list}>
 				{formData.map((data, i) => (
-					<li key={i}>
+					<motion.li key={i} variants={dataListAnimate} initial="hidden" animate="visible">
 						first is: {data.ex} <br />
 						second is: {data.exReq}
-					</li>
+					</motion.li>
 				))}
 			</ul>
 		</div>
 	);
+};
+
+const dataListAnimate = {
+	hidden: { y: -20, opacity: 0 },
+	visible: { y: 0, opacity: 1 },
 };
 
 const wrap = css`

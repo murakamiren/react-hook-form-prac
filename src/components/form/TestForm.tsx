@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { VFC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
@@ -25,12 +25,33 @@ const TestForm: VFC = () => {
 		<form css={formStyle} onSubmit={handleSubmit(onSubmit)}>
 			<FormInputText placeholder="ex-1" register={register} registerName="ex" required={false} />
 			<FormInputText placeholder="ex-2" register={register} registerName="exReq" required={true} />
-			{errors.exReq && <span css={{ color: "red" }}>please type something</span>}
+			<AnimatePresence>
+				{errors.exReq && (
+					<motion.span
+						css={{ color: "red" }}
+						key="warnText"
+						variants={warnTextAnimate}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
+					>
+						please type something
+					</motion.span>
+				)}
+			</AnimatePresence>
 			<motion.div className="btn-wrap" whileHover={{ scale: 1.1 }}>
 				<button type="submit">click me</button>
 			</motion.div>
 		</form>
 	);
+};
+
+const warnTextAnimate = {
+	hidden: { y: -20, opacity: 0 },
+	visible: {
+		y: 0,
+		opacity: 1,
+	},
 };
 
 const formStyle = css`
