@@ -39,7 +39,7 @@ const TestForm: VFC = () => {
 					</motion.span>
 				)}
 			</AnimatePresence>
-			<motion.div className="btn-wrap" whileHover={{ scale: 1.1 }}>
+			<motion.div className="btn-wrap" whileHover={{ scale: 1.1, backgroundColor: "#1fb0ff" }}>
 				<button type="submit">click me</button>
 			</motion.div>
 		</form>
