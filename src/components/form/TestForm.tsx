@@ -4,6 +4,7 @@ import { VFC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import { formInputs } from "../../types/formType";
+import FormInputText from "../modules/FormInputText";
 import { formDataAtom } from "../store/atoms/formDataAtom";
 
 const TestForm: VFC = () => {
@@ -22,8 +23,8 @@ const TestForm: VFC = () => {
 	console.log("watch ex-1", watch("ex"));
 	return (
 		<form css={formStyle} onSubmit={handleSubmit(onSubmit)}>
-			<input type="text" placeholder="ex-1" {...register("ex")} />
-			<input type="text" placeholder="ex-2" {...register("exReq", { required: true })} />
+			<FormInputText placeholder="ex-1" register={register} registerName="ex" required={false} />
+			<FormInputText placeholder="ex-2" register={register} registerName="exReq" required={true} />
 			{errors.exReq && <span css={{ color: "red" }}>please type something</span>}
 			<motion.div className="btn-wrap" whileHover={{ scale: 1.1 }}>
 				<button type="submit">click me</button>
